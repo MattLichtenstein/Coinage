@@ -22,13 +22,7 @@ class AddCategoryViewController: UIViewController {
         categoryTextField.font = .systemFont(ofSize: 32)
         return categoryTextField
     }()
-    
-    private lazy var addCategoryButton: UIButton = {
-        let addCategoryButton = UIButton(configuration: .filled())
-        addCategoryButton.setTitle("Add category", for: .normal)
-        addCategoryButton.addTarget(self, action: #selector(addCategory), for: .touchUpInside)
-        return addCategoryButton
-    }()
+    private let categoryTypeButton = PickerButton(options: ["Expense", "Income", "Investment"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,35 +30,68 @@ class AddCategoryViewController: UIViewController {
         view.backgroundColor = .systemBackground
 
         view.addSubview(categoryTextField)
-        view.addSubview(addCategoryButton)
+        view.addSubview(categoryTypeButton)
         
+        setupToolbar()
         setupCategoryTextField()
-        setupAddCategoryButton()
+        setupCategoryTypePicker()
     }
     
     override func viewDidLayoutSubviews() {
         addTextFieldUnderline()
     }
     
-    func setupCategoryTextField() {
-        view.addSubview(categoryTextField)
+    func setupToolbar() {
+        let navigationBar = UINavigationBar()
+        navigationBar.barTintColor = .systemBackground
+        navigationBar.isTranslucent = false
+        navigationBar.shadowImage = UIImage()
+        view.addSubview(navigationBar)
 
+        let navButtonCancel = UIBarButtonItem()
+        navButtonCancel.tintColor = .label
+        navButtonCancel.title = "Cancel"
+        navButtonCancel.action = #selector(dismissView)
+
+        let navButtonAdd = UIBarButtonItem()
+        navButtonAdd.tintColor = .label
+        navButtonAdd.title = "Add"
+        navButtonAdd.action = #selector(addCategory)
+        
+        let navTitle = UINavigationItem(title: "Add category")
+        navTitle.leftBarButtonItem = navButtonCancel
+        navTitle.rightBarButtonItem = navButtonAdd
+        
+        navigationBar.items = [navTitle]
+        
+        navigationBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            navigationBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 8),
+            navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            navigationBar.heightAnchor.constraint(equalToConstant: 60)
+        ])
+    }
+    
+    func setupCategoryTextField() {
         categoryTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            categoryTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            categoryTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 72),
             categoryTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             categoryTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             categoryTextField.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
     
-    func setupAddCategoryButton() {
-        addCategoryButton.translatesAutoresizingMaskIntoConstraints = false
+    func setupCategoryTypePicker() {
+        view.addSubview(categoryTypeButton)
+        
+        categoryTypeButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            addCategoryButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            addCategoryButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-            addCategoryButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            addCategoryButton.heightAnchor.constraint(equalToConstant: 44)
+            categoryTypeButton.topAnchor.constraint(equalTo: categoryTextField.bottomAnchor, constant: 16),
+            categoryTypeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            categoryTypeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            categoryTypeButton.heightAnchor.constraint(equalToConstant: 44),
         ])
     }
     
@@ -88,5 +115,8 @@ class AddCategoryViewController: UIViewController {
         
         dismiss(animated: true)
     }
-
+    
+    @objc func dismissView() {
+        dismiss(animated: true)
+    }
 }

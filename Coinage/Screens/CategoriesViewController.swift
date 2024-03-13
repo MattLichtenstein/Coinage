@@ -20,9 +20,16 @@ class CategoriesViewController: UIViewController {
         view.backgroundColor = .systemBackground
         edgesForExtendedLayout = [.top]
 
+        setupAddCategoryToolbarButton()
         setupTableView()
         setupAddCategoryButton()
         fetchCategories()
+    }
+    
+    func setupAddCategoryToolbarButton() {
+        let addCategoryToolbarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentAddCategoriesViewController))
+        
+        navigationItem.rightBarButtonItem = addCategoryToolbarButton
     }
     
     func setupAddCategoryButton() {

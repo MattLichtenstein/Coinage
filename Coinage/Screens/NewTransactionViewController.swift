@@ -30,7 +30,7 @@ final class NewTransactionViewController: UIViewController {
         addTransactionButton.setTitle("Add", for: .normal)
         addTransactionButton.backgroundColor = .secondarySystemBackground
         addTransactionButton.setTitleColor(.label, for: .normal)
-        addTransactionButton.layer.cornerRadius = 12
+        addTransactionButton.layer.cornerRadius = 10
         addTransactionButton.titleLabel?.font = UIFontMetrics.default.scaledFont(for: UIFont(name: Constants.cmMediumRounded, size:  18)!)
         addTransactionButton.titleLabel?.adjustsFontForContentSizeCategory = true
         addTransactionButton.addTarget(self, action: #selector(addTransaction), for: .touchUpInside)
