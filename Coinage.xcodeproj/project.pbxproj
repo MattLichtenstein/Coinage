@@ -14,6 +14,17 @@
 		2C8C5F632B97932800E0ECFD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C5F622B97932800E0ECFD /* SceneDelegate.swift */; };
 		2C8C5F6A2B97932A00E0ECFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C8C5F692B97932A00E0ECFD /* Assets.xcassets */; };
 		2C8C5F6D2B97932A00E0ECFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C8C5F6B2B97932A00E0ECFD /* LaunchScreen.storyboard */; };
+		2CB255182B9D13DA005FD0F9 /* TransactionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB255172B9D13DA005FD0F9 /* TransactionListCell.swift */; };
+		2CD879542B9E7E83004EDFCF /* CashMarket Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2CD8794F2B9E7E83004EDFCF /* CashMarket Medium.otf */; };
+		2CD879552B9E7E83004EDFCF /* CashMarket MediumRounded.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2CD879502B9E7E83004EDFCF /* CashMarket MediumRounded.otf */; };
+		2CD879562B9E7E83004EDFCF /* CashMarket Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2CD879512B9E7E83004EDFCF /* CashMarket Regular.otf */; };
+		2CD879572B9E7E83004EDFCF /* CashMarket RegularRounded.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2CD879522B9E7E83004EDFCF /* CashMarket RegularRounded.otf */; };
+		2CD879582B9E7E83004EDFCF /* CashMarket Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2CD879532B9E7E83004EDFCF /* CashMarket Bold.otf */; };
+		2CD8795C2B9E91F2004EDFCF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8795B2B9E91F2004EDFCF /* Constants.swift */; };
+		2CD879622B9F883C004EDFCF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD879612B9F883C004EDFCF /* SettingsViewController.swift */; };
+		2CD879642B9F88FF004EDFCF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD879632B9F88FF004EDFCF /* SettingsView.swift */; };
+		2CD879662BA0EBAB004EDFCF /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD879652BA0EBAB004EDFCF /* CategoriesViewController.swift */; };
+		2CD879682BA10453004EDFCF /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD879672BA10453004EDFCF /* AddCategoryViewController.swift */; };
 		2CF649A52B9A323F00841A69 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CF649A32B9A323F00841A69 /* CoreData.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +38,17 @@
 		2C8C5F692B97932A00E0ECFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C8C5F6C2B97932A00E0ECFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C8C5F6E2B97932A00E0ECFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CB255172B9D13DA005FD0F9 /* TransactionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListCell.swift; sourceTree = "<group>"; };
+		2CD8794F2B9E7E83004EDFCF /* CashMarket Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CashMarket Medium.otf"; sourceTree = "<group>"; };
+		2CD879502B9E7E83004EDFCF /* CashMarket MediumRounded.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CashMarket MediumRounded.otf"; sourceTree = "<group>"; };
+		2CD879512B9E7E83004EDFCF /* CashMarket Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CashMarket Regular.otf"; sourceTree = "<group>"; };
+		2CD879522B9E7E83004EDFCF /* CashMarket RegularRounded.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CashMarket RegularRounded.otf"; sourceTree = "<group>"; };
+		2CD879532B9E7E83004EDFCF /* CashMarket Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CashMarket Bold.otf"; sourceTree = "<group>"; };
+		2CD8795B2B9E91F2004EDFCF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2CD879612B9F883C004EDFCF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		2CD879632B9F88FF004EDFCF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2CD879652BA0EBAB004EDFCF /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		2CD879672BA10453004EDFCF /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		2CF649A42B9A323F00841A69 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,17 +82,60 @@
 		2C8C5F5F2B97932800E0ECFD /* Coinage */ = {
 			isa = PBXGroup;
 			children = (
-				2C8C5F602B97932800E0ECFD /* AppDelegate.swift */,
-				2C8C5F622B97932800E0ECFD /* SceneDelegate.swift */,
-				2CF649A32B9A323F00841A69 /* CoreData.xcdatamodeld */,
-				2C4A40462B979681002329AC /* MainTabBarController.swift */,
-				2C4A40482B9797B6002329AC /* NewTransactionViewController.swift */,
-				2C4A404C2B979A17002329AC /* TransactionListViewController.swift */,
+				2CD879602B9F8713004EDFCF /* App */,
+				2CD8795D2B9F86CB004EDFCF /* Screens */,
+				2CD8795F2B9F86F7004EDFCF /* Components */,
+				2CD8792D2B9E790A004EDFCF /* Fonts */,
 				2C8C5F692B97932A00E0ECFD /* Assets.xcassets */,
 				2C8C5F6B2B97932A00E0ECFD /* LaunchScreen.storyboard */,
 				2C8C5F6E2B97932A00E0ECFD /* Info.plist */,
 			);
 			path = Coinage;
+			sourceTree = "<group>";
+		};
+		2CD8792D2B9E790A004EDFCF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2CD879532B9E7E83004EDFCF /* CashMarket Bold.otf */,
+				2CD8794F2B9E7E83004EDFCF /* CashMarket Medium.otf */,
+				2CD879502B9E7E83004EDFCF /* CashMarket MediumRounded.otf */,
+				2CD879512B9E7E83004EDFCF /* CashMarket Regular.otf */,
+				2CD879522B9E7E83004EDFCF /* CashMarket RegularRounded.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		2CD8795D2B9F86CB004EDFCF /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				2C4A40482B9797B6002329AC /* NewTransactionViewController.swift */,
+				2C4A404C2B979A17002329AC /* TransactionListViewController.swift */,
+				2CD879612B9F883C004EDFCF /* SettingsViewController.swift */,
+				2CD879632B9F88FF004EDFCF /* SettingsView.swift */,
+				2CD879652BA0EBAB004EDFCF /* CategoriesViewController.swift */,
+				2CD879672BA10453004EDFCF /* AddCategoryViewController.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		2CD8795F2B9F86F7004EDFCF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2CB255172B9D13DA005FD0F9 /* TransactionListCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		2CD879602B9F8713004EDFCF /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2C8C5F602B97932800E0ECFD /* AppDelegate.swift */,
+				2C8C5F622B97932800E0ECFD /* SceneDelegate.swift */,
+				2C4A40462B979681002329AC /* MainTabBarController.swift */,
+				2CD8795B2B9E91F2004EDFCF /* Constants.swift */,
+				2CF649A32B9A323F00841A69 /* CoreData.xcdatamodeld */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,8 +196,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CD879552B9E7E83004EDFCF /* CashMarket MediumRounded.otf in Resources */,
 				2C8C5F6D2B97932A00E0ECFD /* LaunchScreen.storyboard in Resources */,
+				2CD879582B9E7E83004EDFCF /* CashMarket Bold.otf in Resources */,
+				2CD879572B9E7E83004EDFCF /* CashMarket RegularRounded.otf in Resources */,
+				2CD879562B9E7E83004EDFCF /* CashMarket Regular.otf in Resources */,
 				2C8C5F6A2B97932A00E0ECFD /* Assets.xcassets in Resources */,
+				2CD879542B9E7E83004EDFCF /* CashMarket Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,11 +214,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C4A40492B9797B6002329AC /* NewTransactionViewController.swift in Sources */,
+				2CD879662BA0EBAB004EDFCF /* CategoriesViewController.swift in Sources */,
 				2C4A404D2B979A17002329AC /* TransactionListViewController.swift in Sources */,
 				2CF649A52B9A323F00841A69 /* CoreData.xcdatamodeld in Sources */,
+				2CB255182B9D13DA005FD0F9 /* TransactionListCell.swift in Sources */,
+				2CD879642B9F88FF004EDFCF /* SettingsView.swift in Sources */,
 				2C8C5F612B97932800E0ECFD /* AppDelegate.swift in Sources */,
 				2C8C5F632B97932800E0ECFD /* SceneDelegate.swift in Sources */,
+				2CD879682BA10453004EDFCF /* AddCategoryViewController.swift in Sources */,
 				2C4A40472B979681002329AC /* MainTabBarController.swift in Sources */,
+				2CD8795C2B9E91F2004EDFCF /* Constants.swift in Sources */,
+				2CD879622B9F883C004EDFCF /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,8 +447,7 @@
 				2CF649A42B9A323F00841A69 /* CoreData.xcdatamodel */,
 			);
 			currentVersion = 2CF649A42B9A323F00841A69 /* CoreData.xcdatamodel */;
-			name = CoreData.xcdatamodeld;
-			path = /Users/mattlichtenstein/Documents/Code/Coinage/Coinage/CoreData.xcdatamodeld;
+			path = CoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

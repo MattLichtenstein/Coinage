@@ -5,8 +5,8 @@
 //  Created by Matt Lichtenstein on 3/5/24.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
 final class TransactionListViewController: UIViewController{
 
@@ -20,7 +20,7 @@ final class TransactionListViewController: UIViewController{
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        transactions = fetchTransactions()
+        fetchTransactions()
     }
     
     override func viewDidLoad() {
@@ -39,7 +39,8 @@ final class TransactionListViewController: UIViewController{
     func setupTableView() {
         transactionListTableView.delegate = self
         transactionListTableView.dataSource = self
-        transactionListTableView.register(UITableViewCell.self, forCellReuseIdentifier: "transactionCell")
+        transactionListTableView.register(TransactionListCell.self, forCellReuseIdentifier: "transactionCell")
+        transactionListTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
         transactionListTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -50,13 +51,12 @@ final class TransactionListViewController: UIViewController{
         ])
     }
     
-    func fetchTransactions() -> [Transaction]{
+    func fetchTransactions() {
         do{
             transactions = try context.fetch(Transaction.fetchRequest())
         } catch {
             print("Could not fetch transactions")
         }
-        return transactions
     }
 }
 
@@ -66,11 +66,8 @@ extension TransactionListViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        let label = UILabel(frame: CGRect(x: 50, y: 0, width: 100, height: 40))
-        label.textColor = .red
-        label.text = String(transactions[indexPath.row].amount)
-        cell.addSubview(label)
+        let cell = transactionListTableView.dequeueReusableCell(withIdentifier: "transactionCell") as! TransactionListCell
+        cell.setTransaction(transactions[indexPath.row])
         return cell
     }
     
@@ -78,11 +75,22 @@ extension TransactionListViewController: UITableViewDelegate, UITableViewDataSou
         print(transactions[indexPath.row].date ?? "No date available")
         tableView.deselectRow(at: indexPath, animated: true)
     }
+//    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
+    }
     
 }
 
 extension TransactionListViewController: NewTransactionViewDelegate {
     func didAddTransaction() {
+        fetchTransactions()
+        transactionListTableView.reloadData()
+    }
+}
+
+extension TransactionListViewController: SettingsViewControllerDelegate {
+    func didDeleteAllTransactions() {
         fetchTransactions()
         transactionListTableView.reloadData()
     }
