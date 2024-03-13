@@ -72,7 +72,6 @@ extension TransactionListViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(transactions[indexPath.row].date ?? "No date available")
         tableView.deselectRow(at: indexPath, animated: true)
     }
 //    

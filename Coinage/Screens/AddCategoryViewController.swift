@@ -81,6 +81,7 @@ class AddCategoryViewController: UIViewController {
 
         do {
             try context.save()
+            delegate?.didAddCategory()
         } catch {
             print("Could not save category")
         }

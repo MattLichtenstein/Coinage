@@ -25,7 +25,7 @@ class TransactionListCell: UITableViewCell {
     }
     
     private func setupCell() {
-        addSubview(amountLabel)
+        contentView.addSubview(amountLabel)
         
         amountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

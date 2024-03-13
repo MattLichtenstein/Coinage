@@ -11,7 +11,7 @@ class CategoriesViewController: UIViewController {
 
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var categories = [Category]()
-    let categoriesTableView = UITableView()
+    let categoriesListTableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,18 +45,18 @@ class CategoriesViewController: UIViewController {
     }
     
     func setupTableView() {
-        view.addSubview(categoriesTableView)
+        view.addSubview(categoriesListTableView)
         
-        categoriesTableView.delegate = self
-        categoriesTableView.dataSource = self
-        categoriesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "categoryCell")
+        categoriesListTableView.delegate = self
+        categoriesListTableView.dataSource = self
+        categoriesListTableView.register(CategoryListCell.self, forCellReuseIdentifier: "categoryCell")
         
-        categoriesTableView.translatesAutoresizingMaskIntoConstraints = false
+        categoriesListTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            categoriesTableView.topAnchor.constraint(equalTo: view.topAnchor),
-            categoriesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            categoriesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            categoriesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            categoriesListTableView.topAnchor.constraint(equalTo: view.topAnchor),
+            categoriesListTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            categoriesListTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            categoriesListTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
     
@@ -83,28 +83,19 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = categoriesTableView.dequeueReusableCell(withIdentifier: "categoryCell")
-        let label = UILabel()
-        cell?.contentView.addSubview(label)
-        label.text = categories[indexPath.row].name
-        label.textColor = .label
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: cell!.leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: cell!.trailingAnchor),
-            label.centerYAnchor.constraint(equalTo: cell!.centerYAnchor)
-        ])
-        
-        return cell!
+        let cell = categoriesListTableView.dequeueReusableCell(withIdentifier: "categoryCell") as! CategoryListCell
+        cell.setCategory(categories[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
 extension CategoriesViewController: AddCategoryViewDelegate {
     func didAddCategory() {
         fetchCategories()
-        categoriesTableView.reloadData()
+        categoriesListTableView.reloadData()
     }
-    
-    
 }
