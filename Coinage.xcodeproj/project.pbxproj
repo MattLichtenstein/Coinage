@@ -17,6 +17,7 @@
 		2CB255182B9D13DA005FD0F9 /* TransactionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB255172B9D13DA005FD0F9 /* TransactionListCell.swift */; };
 		2CD5C4822BA15539005BAF28 /* CategoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5C4812BA15539005BAF28 /* CategoryListCell.swift */; };
 		2CD5C4842BA21D27005BAF28 /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5C4832BA21D27005BAF28 /* PickerButton.swift */; };
+		2CD5C4862BA24CE3005BAF28 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5C4852BA24CE3005BAF28 /* TextField.swift */; };
 		2CD879542B9E7E83004EDFCF /* CashMarket Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2CD8794F2B9E7E83004EDFCF /* CashMarket Medium.otf */; };
 		2CD879552B9E7E83004EDFCF /* CashMarket MediumRounded.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2CD879502B9E7E83004EDFCF /* CashMarket MediumRounded.otf */; };
 		2CD879562B9E7E83004EDFCF /* CashMarket Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2CD879512B9E7E83004EDFCF /* CashMarket Regular.otf */; };
@@ -43,6 +44,7 @@
 		2CB255172B9D13DA005FD0F9 /* TransactionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListCell.swift; sourceTree = "<group>"; };
 		2CD5C4812BA15539005BAF28 /* CategoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListCell.swift; sourceTree = "<group>"; };
 		2CD5C4832BA21D27005BAF28 /* PickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerButton.swift; sourceTree = "<group>"; };
+		2CD5C4852BA24CE3005BAF28 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		2CD8794F2B9E7E83004EDFCF /* CashMarket Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CashMarket Medium.otf"; sourceTree = "<group>"; };
 		2CD879502B9E7E83004EDFCF /* CashMarket MediumRounded.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CashMarket MediumRounded.otf"; sourceTree = "<group>"; };
 		2CD879512B9E7E83004EDFCF /* CashMarket Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CashMarket Regular.otf"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		2CD8795F2B9F86F7004EDFCF /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2CD5C4852BA24CE3005BAF28 /* TextField.swift */,
 				2CD5C4832BA21D27005BAF28 /* PickerButton.swift */,
 				2CD5C4812BA15539005BAF28 /* CategoryListCell.swift */,
 				2CB255172B9D13DA005FD0F9 /* TransactionListCell.swift */,
@@ -222,6 +225,7 @@
 				2C4A40492B9797B6002329AC /* NewTransactionViewController.swift in Sources */,
 				2CD879662BA0EBAB004EDFCF /* CategoriesViewController.swift in Sources */,
 				2C4A404D2B979A17002329AC /* TransactionListViewController.swift in Sources */,
+				2CD5C4862BA24CE3005BAF28 /* TextField.swift in Sources */,
 				2CF649A52B9A323F00841A69 /* CoreData.xcdatamodeld in Sources */,
 				2CB255182B9D13DA005FD0F9 /* TransactionListCell.swift in Sources */,
 				2CD879642B9F88FF004EDFCF /* SettingsView.swift in Sources */,

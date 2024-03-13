@@ -27,6 +27,7 @@ struct SettingsView: View {
                             Text("Categories")
                             Spacer()
                             Image(systemName: "chevron.right")
+                                .foregroundStyle(Color(UIColor.systemGray2))
                         }
                         .foregroundStyle(Color(uiColor: .label))
                     }

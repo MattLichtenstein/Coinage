@@ -23,9 +23,18 @@ class PickerButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        // Ensure the trailing image is pinned to the trailing edge
+        if let imageView = imageView {
+            imageView.frame.origin.x = bounds.width - imageView.frame.width - 12
+        }
+    }
+    
     private func configure() {
         configuration = .plain()
-        configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0.0, leading: 8.0, bottom: 0.0, trailing: 0.0)
+        configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0.0, leading: 12.0, bottom: 0.0, trailing: 0.0)
         setTitleColor(.label, for: .normal)
         tintColor = .gray
         backgroundColor = .secondarySystemBackground
@@ -44,9 +53,14 @@ class PickerButton: UIButton {
         let menu = UIMenu(children: actions)
         self.menu = menu
         showsMenuAsPrimaryAction = true
-        
         setTitle(actions[0].title, for: .normal)
+        tintColor = .gray
         
+        let config = UIImage.SymbolConfiguration(pointSize: 14)
+        let image = UIImage(systemName:  "arrow.up.and.down", withConfiguration: config)
+        let highlightImage = image?.withTintColor(.systemGray2, renderingMode: .alwaysOriginal)
+        setImage(image, for: .normal)
+        setImage(highlightImage, for: .highlighted)
     }
     
 }

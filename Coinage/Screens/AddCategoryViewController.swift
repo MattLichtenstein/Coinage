@@ -16,10 +16,9 @@ class AddCategoryViewController: UIViewController {
     var delegate: AddCategoryViewDelegate?
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    private let categoryTextField: UITextField = {
-        let categoryTextField = UITextField()
+    private let categoryTextField: TextField = {
+        let categoryTextField = TextField()
         categoryTextField.placeholder = "Category name"
-        categoryTextField.font = .systemFont(ofSize: 32)
         return categoryTextField
     }()
     private let categoryTypeButton = PickerButton(options: ["Expense", "Income", "Investment"])
@@ -35,10 +34,6 @@ class AddCategoryViewController: UIViewController {
         setupToolbar()
         setupCategoryTextField()
         setupCategoryTypePicker()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        addTextFieldUnderline()
     }
     
     func setupToolbar() {
@@ -93,13 +88,6 @@ class AddCategoryViewController: UIViewController {
             categoryTypeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             categoryTypeButton.heightAnchor.constraint(equalToConstant: 44),
         ])
-    }
-    
-    func addTextFieldUnderline() {
-        let bottomLine = CALayer()
-        bottomLine.frame = CGRectMake(0.0, categoryTextField.frame.height - 1, categoryTextField.frame.width, 1.0)
-        bottomLine.backgroundColor = UIColor.label.cgColor
-        categoryTextField.layer.addSublayer(bottomLine)
     }
     
     @objc func addCategory() {
