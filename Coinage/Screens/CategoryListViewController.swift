@@ -67,7 +67,7 @@ class CategoryListViewController: UIViewController {
         ])
     }
     
-    func fetchCategories() {
+    private func fetchCategories() {
         do {
             categories = try context.fetch(Category.fetchRequest())
         } catch {

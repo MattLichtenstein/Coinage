@@ -21,7 +21,7 @@ class AddCategoryViewController: UIViewController {
         categoryTextField.placeholder = "Category name"
         return categoryTextField
     }()
-    private let categoryTypeButton = PickerButton(options: ["Expense", "Income", "Investment"])
+    private let categoryTypePicker = PickerButton(options: ["Expense", "Income", "Investment"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class AddCategoryViewController: UIViewController {
         view.backgroundColor = .systemBackground
 
         view.addSubview(categoryTextField)
-        view.addSubview(categoryTypeButton)
+        view.addSubview(categoryTypePicker)
         
         setupToolbar()
         setupCategoryTextField()
@@ -79,21 +79,24 @@ class AddCategoryViewController: UIViewController {
     }
     
     func setupCategoryTypePicker() {
-        view.addSubview(categoryTypeButton)
+        view.addSubview(categoryTypePicker)
         
-        categoryTypeButton.translatesAutoresizingMaskIntoConstraints = false
+        categoryTypePicker.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            categoryTypeButton.topAnchor.constraint(equalTo: categoryTextField.bottomAnchor, constant: 16),
-            categoryTypeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            categoryTypeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            categoryTypeButton.heightAnchor.constraint(equalToConstant: 44),
+            categoryTypePicker.topAnchor.constraint(equalTo: categoryTextField.bottomAnchor, constant: 16),
+            categoryTypePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            categoryTypePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            categoryTypePicker.heightAnchor.constraint(equalToConstant: 44),
         ])
     }
     
     @objc func addCategory() {
         let category = Category(context: context)
         category.name = categoryTextField.text
-
+        category.type = (getCategoryType()).rawValue
+        
+        print(category)
+        
         do {
             try context.save()
             delegate?.didAddCategory()
@@ -102,6 +105,20 @@ class AddCategoryViewController: UIViewController {
         }
         
         dismiss(animated: true)
+    }
+    
+    func getCategoryType() -> CategoryType {
+//        guard let selectedOption = categoryTypePicker.selectedOption else { return expense }
+        switch categoryTypePicker.selectedOption {
+        case "Expense":
+            return .expense
+        case "Income":
+            return .income
+        case "Investment":
+            return .investment
+        default:
+            return .expense
+        }
     }
     
     @objc func dismissView() {

@@ -18,6 +18,9 @@ final class NewTransactionViewController: UIViewController {
     var newTransactionViewDelegate: NewTransactionViewDelegate?
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var categories: [Category] {
+        return fetchCategories()
+    }
     private let amountLabel: UILabel = {
         let font = UIFont(name: Constants.cmMediumRounded, size:  50)
 
@@ -49,18 +52,23 @@ final class NewTransactionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         view.backgroundColor = .systemBackground
         edgesForExtendedLayout = []
 
         view.addSubview(amountLabel)
         view.addSubview(addTransactionButton)
         view.addSubview(numPadView)
+        view.addSubview(categoryPicker)
 
         setupValueLabel()
         setupCategoryPicker()
         setupAddTransactionButton()
         setupNumpad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setCategories()
     }
     
     func setupValueLabel() {
@@ -72,16 +80,6 @@ final class NewTransactionViewController: UIViewController {
     }
     
     func setupCategoryPicker() {
-        var categories = [Category]()
-        do {
-            categories = try context.fetch(Category.fetchRequest())
-        } catch {
-            print("Could not fetch categories")
-        }
-        
-        categoryPicker.setOptions(categories.map { $0.name ?? "Unknown" })
-        view.addSubview(categoryPicker)
-        
         categoryPicker.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             categoryPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -91,6 +89,7 @@ final class NewTransactionViewController: UIViewController {
 
         ])
         
+        setCategories()
     }
     
     func setupNumpad() {
@@ -148,6 +147,19 @@ final class NewTransactionViewController: UIViewController {
             addTransactionButton.heightAnchor.constraint(equalToConstant: 50),
             addTransactionButton.widthAnchor.constraint(equalToConstant: 50)
         ])
+    }
+    
+    func fetchCategories() -> [Category] {
+        do {
+            return try context.fetch(Category.fetchRequest())
+        } catch {
+            print("Could not fetch categories")
+        }
+        return []
+    }
+    
+    func setCategories() {
+        categoryPicker.setOptions(categories.map { $0.name ?? "Unknown category" })
     }
     
     @objc func addTransaction() {

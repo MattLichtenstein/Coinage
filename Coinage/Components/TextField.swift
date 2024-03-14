@@ -22,7 +22,7 @@ class TextField: UITextField {
     private func configure() {
         backgroundColor = .secondarySystemBackground
         layer.cornerRadius = 10
-        let padding = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 0))
+        let padding = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 0))
         leftView = padding
         rightView = padding
         leftViewMode = .always

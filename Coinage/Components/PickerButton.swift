@@ -9,17 +9,24 @@ import UIKit
 
 class PickerButton: UIButton {
     
-    private var options = [String]() {
+    private var options: [String] {
         didSet {
-            configure()
+            setupMenu()
+        }
+    }
+    
+    var selectedOption: String? {
+        didSet {
+            setTitle(selectedOption, for: .normal)
         }
     }
     
     init(options: [String] = []) {
         self.options = options
+        selectedOption = options.isEmpty ? nil : options[0]
         
         super.init(frame: .zero)
-        
+
         configure()
     }
     
@@ -37,7 +44,9 @@ class PickerButton: UIButton {
     }
     
     func setOptions(_ options: [String]) {
+        if options.isEmpty { return }
         self.options = options
+        setTitle(options[0], for: .normal)
     }
     
     private func configure() {
@@ -48,27 +57,30 @@ class PickerButton: UIButton {
         backgroundColor = .secondarySystemBackground
         contentHorizontalAlignment = .leading
         layer.cornerRadius = 10
+        tintColor = .gray
+        showsMenuAsPrimaryAction = true
+
+        setTitle(selectedOption, for: .normal)
+
+        let config = UIImage.SymbolConfiguration(pointSize: 14)
+        let image = UIImage(systemName:  "arrow.up.and.down", withConfiguration: config)
+        let highlightImage = image?.withTintColor(.systemGray2, renderingMode: .alwaysOriginal)
+        setImage(image, for: .normal)
+        setImage(highlightImage, for: .highlighted)
         
-        //Setup actions
+        setupMenu()
+    }
+    
+    private func setupMenu() {
         var actions = [UIAction]()
         for option in options {
             let action = UIAction(title: option) { action in
-                self.setTitle(action.title, for: .normal)
+                self.selectedOption = action.title
             }
             actions.append(action)
         }
         
         let menu = UIMenu(children: actions)
         self.menu = menu
-        showsMenuAsPrimaryAction = true
-        setTitle(!actions.isEmpty ? actions[0].title : "Unknown", for: .normal)
-        tintColor = .gray
-        
-        let config = UIImage.SymbolConfiguration(pointSize: 14)
-        let image = UIImage(systemName:  "arrow.up.and.down", withConfiguration: config)
-        let highlightImage = image?.withTintColor(.systemGray2, renderingMode: .alwaysOriginal)
-        setImage(image, for: .normal)
-        setImage(highlightImage, for: .highlighted)
     }
-    
 }
