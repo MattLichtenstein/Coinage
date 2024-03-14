@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoriesViewController: UIViewController {
+class CategoryListViewController: UIViewController {
 
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var categories = [Category]()
@@ -84,7 +84,7 @@ class CategoriesViewController: UIViewController {
     }
 }
 
-extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
+extension CategoryListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories.count
     }
@@ -100,7 +100,7 @@ extension CategoriesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension CategoriesViewController: AddCategoryViewDelegate {
+extension CategoryListViewController: AddCategoryViewDelegate {
     func didAddCategory() {
         fetchCategories()
         categoriesListTableView.reloadData()
