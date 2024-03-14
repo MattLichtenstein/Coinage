@@ -5,6 +5,7 @@
 //  Created by Matt Lichtenstein on 3/5/24.
 //
 
+import CoreData
 import UIKit
 
 protocol NewTransactionViewDelegate {
@@ -12,6 +13,7 @@ protocol NewTransactionViewDelegate {
 }
 
 final class NewTransactionViewController: UIViewController {
+    
     
     var newTransactionViewDelegate: NewTransactionViewDelegate?
     
@@ -43,6 +45,7 @@ final class NewTransactionViewController: UIViewController {
         numPadView.spacing = 12
         return numPadView
     }()
+    var categoryPicker = PickerButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,12 +54,13 @@ final class NewTransactionViewController: UIViewController {
         edgesForExtendedLayout = []
 
         view.addSubview(amountLabel)
-        view.addSubview(numPadView)
         view.addSubview(addTransactionButton)
-        
+        view.addSubview(numPadView)
+
         setupValueLabel()
-        setupNumpad()
+        setupCategoryPicker()
         setupAddTransactionButton()
+        setupNumpad()
     }
     
     func setupValueLabel() {
@@ -65,6 +69,28 @@ final class NewTransactionViewController: UIViewController {
             amountLabel.bottomAnchor.constraint(equalTo: numPadView.topAnchor, constant: -48),
             amountLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+    }
+    
+    func setupCategoryPicker() {
+        var categories = [Category]()
+        do {
+            categories = try context.fetch(Category.fetchRequest())
+        } catch {
+            print("Could not fetch categories")
+        }
+        
+        categoryPicker.setOptions(categories.map { $0.name ?? "Unknown" })
+        view.addSubview(categoryPicker)
+        
+        categoryPicker.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            categoryPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            categoryPicker.bottomAnchor.constraint(equalTo: numPadView.topAnchor, constant: -8),
+            categoryPicker.heightAnchor.constraint(equalToConstant: 44),
+            categoryPicker.widthAnchor.constraint(equalToConstant: 150)
+
+        ])
+        
     }
     
     func setupNumpad() {
@@ -128,6 +154,20 @@ final class NewTransactionViewController: UIViewController {
         let transaction = Transaction(context: context)
         transaction.amount = Double(amountLabel.text ?? "0") ?? 0.0
         transaction.date = Date()
+        
+        var categories = [Category]()
+        let request = NSFetchRequest<Category>(entityName: "Category")
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        do {
+            categories = try context.fetch(request)
+        } catch let error {
+            print("Error fetching: \(error)")
+        }
+
+        transaction.category = categories.first(where: { cat in
+            cat.name == categoryPicker.currentTitle
+        })
+        
         do {
             try context.save()
         } catch {

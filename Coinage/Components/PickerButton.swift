@@ -9,9 +9,13 @@ import UIKit
 
 class PickerButton: UIButton {
     
-    private var options = [String]()
+    private var options = [String]() {
+        didSet {
+            configure()
+        }
+    }
     
-    init(options: [String]) {
+    init(options: [String] = []) {
         self.options = options
         
         super.init(frame: .zero)
@@ -32,9 +36,13 @@ class PickerButton: UIButton {
         }
     }
     
+    func setOptions(_ options: [String]) {
+        self.options = options
+    }
+    
     private func configure() {
         configuration = .plain()
-        configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0.0, leading: 12.0, bottom: 0.0, trailing: 0.0)
+        configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0.0, leading: -4.0, bottom: 0.0, trailing: 0.0)
         setTitleColor(.label, for: .normal)
         tintColor = .gray
         backgroundColor = .secondarySystemBackground
@@ -53,7 +61,7 @@ class PickerButton: UIButton {
         let menu = UIMenu(children: actions)
         self.menu = menu
         showsMenuAsPrimaryAction = true
-        setTitle(actions[0].title, for: .normal)
+        setTitle(!actions.isEmpty ? actions[0].title : "Unknown", for: .normal)
         tintColor = .gray
         
         let config = UIImage.SymbolConfiguration(pointSize: 14)

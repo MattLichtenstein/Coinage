@@ -46,7 +46,7 @@ final class SettingsViewController: UIViewController {
 
 extension SettingsViewController: SettingsViewDelegate {    
     func didPressCategories() {
-        navigationController?.pushViewController(CategoriesViewController(), animated: true)
+        navigationController?.pushViewController(CategoryListViewController(), animated: true)
     }
     
     func didPressDeleteAllTransactions() {
