@@ -26,7 +26,7 @@
 		2CD8795C2B9E91F2004EDFCF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8795B2B9E91F2004EDFCF /* Constants.swift */; };
 		2CD879622B9F883C004EDFCF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD879612B9F883C004EDFCF /* SettingsViewController.swift */; };
 		2CD879642B9F88FF004EDFCF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD879632B9F88FF004EDFCF /* SettingsView.swift */; };
-		2CD879662BA0EBAB004EDFCF /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD879652BA0EBAB004EDFCF /* CategoriesViewController.swift */; };
+		2CD879662BA0EBAB004EDFCF /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD879652BA0EBAB004EDFCF /* CategoryListViewController.swift */; };
 		2CD879682BA10453004EDFCF /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD879672BA10453004EDFCF /* AddCategoryViewController.swift */; };
 		2CF649A52B9A323F00841A69 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CF649A32B9A323F00841A69 /* CoreData.xcdatamodeld */; };
 /* End PBXBuildFile section */
@@ -53,7 +53,7 @@
 		2CD8795B2B9E91F2004EDFCF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2CD879612B9F883C004EDFCF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2CD879632B9F88FF004EDFCF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		2CD879652BA0EBAB004EDFCF /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		2CD879652BA0EBAB004EDFCF /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
 		2CD879672BA10453004EDFCF /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		2CF649A42B9A323F00841A69 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,7 +118,7 @@
 				2C4A404C2B979A17002329AC /* TransactionListViewController.swift */,
 				2CD879612B9F883C004EDFCF /* SettingsViewController.swift */,
 				2CD879632B9F88FF004EDFCF /* SettingsView.swift */,
-				2CD879652BA0EBAB004EDFCF /* CategoriesViewController.swift */,
+				2CD879652BA0EBAB004EDFCF /* CategoryListViewController.swift */,
 				2CD879672BA10453004EDFCF /* AddCategoryViewController.swift */,
 			);
 			path = Screens;
@@ -223,7 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C4A40492B9797B6002329AC /* NewTransactionViewController.swift in Sources */,
-				2CD879662BA0EBAB004EDFCF /* CategoriesViewController.swift in Sources */,
+				2CD879662BA0EBAB004EDFCF /* CategoryListViewController.swift in Sources */,
 				2C4A404D2B979A17002329AC /* TransactionListViewController.swift in Sources */,
 				2CD5C4862BA24CE3005BAF28 /* TextField.swift in Sources */,
 				2CF649A52B9A323F00841A69 /* CoreData.xcdatamodeld in Sources */,
