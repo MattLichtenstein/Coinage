@@ -76,9 +76,9 @@ extension TransactionListViewController: UITableViewDelegate, UITableViewDataSou
     }
 //    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 80
     }
-    
+        
 }
 
 extension TransactionListViewController: NewTransactionViewDelegate {

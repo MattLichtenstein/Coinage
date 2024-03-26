@@ -14,7 +14,6 @@ protocol NewTransactionViewDelegate {
 
 final class NewTransactionViewController: UIViewController {
     
-    
     var newTransactionViewDelegate: NewTransactionViewDelegate?
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
