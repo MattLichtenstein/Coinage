@@ -24,6 +24,8 @@ class CategoryListViewController: UIViewController {
         setupTableView()
         setupAddCategoryButton()
         fetchCategories()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(categoryAdded), name: Notifications.categoryAdded, object: nil)
     }
     
     func setupAddCategoryToolbarButton() {
@@ -78,7 +80,6 @@ class CategoryListViewController: UIViewController {
     @objc func presentAddCategoriesViewController() {
         let addCategoryVC = AddCategoryViewController()
         addCategoryVC.sheetPresentationController?.detents = [.large()]
-        addCategoryVC.delegate = self
         
         present(addCategoryVC, animated: true, completion: nil)
     }
@@ -98,10 +99,8 @@ extension CategoryListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-}
 
-extension CategoryListViewController: AddCategoryViewDelegate {
-    func didAddCategory() {
+    @objc func categoryAdded() {
         fetchCategories()
         categoriesListTableView.reloadData()
     }

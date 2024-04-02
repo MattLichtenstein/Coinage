@@ -23,7 +23,7 @@ final class MainTabBarController: UITabBarController {
         let transactionListVC = TransactionListViewController()
         let transactionListNavigationVC = UINavigationController(rootViewController: transactionListVC)
         transactionListNavigationVC.tabBarItem.image = UIImage(systemName: "list.bullet.rectangle.portrait")?.withBaselineOffset(fromBottom: 16)
-        newTransactionVC.newTransactionViewDelegate = transactionListVC
+        newTransactionVC.delegate = transactionListVC
         
         let settingsVC = SettingsViewController()
         settingsVC.tabBarItem.image = UIImage(systemName: "gearshape")?.withBaselineOffset(fromBottom: 16)

@@ -14,67 +14,91 @@ protocol NewTransactionViewDelegate {
 
 final class NewTransactionViewController: UIViewController {
     
-    var newTransactionViewDelegate: NewTransactionViewDelegate?
+    var delegate: NewTransactionViewDelegate?
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    private var categories: [Category] {
-        return fetchCategories()
+    
+    private var categories: [Category] = []
+    
+    private var amountValue = "0" {
+        didSet {
+            amountLabel.text = "$" + amountValue
+        }
     }
-    private let amountLabel: UILabel = {
+    
+    private lazy var amountLabel: UILabel = {
         let font = UIFont(name: Constants.cmMediumRounded, size:  50)
-
         let amountLabel = UILabel()
         amountLabel.font = UIFontMetrics.default.scaledFont(for: font!)
         amountLabel.adjustsFontForContentSizeCategory = true
+        amountLabel.text = "$" + amountValue
 
         return amountLabel
     }()
+    
+    private lazy var descriptionField: PlainTextField = {
+        let descriptionField = PlainTextField()
+        descriptionField.placeholder = "Description"
+        return descriptionField
+    }()
+    
     private lazy var addTransactionButton: UIButton = {
         let addTransactionButton = UIButton()
         addTransactionButton.setTitle("Add", for: .normal)
         addTransactionButton.backgroundColor = .secondarySystemBackground
         addTransactionButton.setTitleColor(.label, for: .normal)
         addTransactionButton.layer.cornerRadius = 10
-        addTransactionButton.titleLabel?.font = UIFontMetrics.default.scaledFont(for: UIFont(name: Constants.cmMediumRounded, size:  18)!)
+        addTransactionButton.titleLabel?.font = UIFontMetrics.default.scaledFont(for: UIFont(name: Constants.cmMediumRounded, size:  16)!)
         addTransactionButton.titleLabel?.adjustsFontForContentSizeCategory = true
         addTransactionButton.addTarget(self, action: #selector(addTransaction), for: .touchUpInside)
         return addTransactionButton
     }()
-    private let numPadView: UIStackView = {
+    
+    private lazy var numPadView: UIStackView = {
         let numPadView = UIStackView()
         numPadView.axis = .vertical
         numPadView.distribution = .fillEqually
         numPadView.spacing = 12
         return numPadView
     }()
-    var categoryPicker = PickerButton()
+    
+    private lazy var categoryPicker = PickerButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         view.backgroundColor = .systemBackground
         edgesForExtendedLayout = []
-
+        
         view.addSubview(amountLabel)
+        view.addSubview(descriptionField)
         view.addSubview(addTransactionButton)
         view.addSubview(numPadView)
         view.addSubview(categoryPicker)
-
-        setupValueLabel()
+        
+        setupAmountLabel()
+        setupDescriptionField()
         setupCategoryPicker()
         setupAddTransactionButton()
         setupNumpad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(categoryAdded), name: Notifications.categoryAdded, object: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        setCategories()
-    }
-    
-    func setupValueLabel() {
+    func setupAmountLabel() {
         amountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            amountLabel.bottomAnchor.constraint(equalTo: numPadView.topAnchor, constant: -48),
+            amountLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
             amountLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
+    func setupDescriptionField() {
+        descriptionField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            descriptionField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            descriptionField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -160),
+            descriptionField.bottomAnchor.constraint(equalTo: categoryPicker.topAnchor, constant: -12)
         ])
     }
     
@@ -88,7 +112,7 @@ final class NewTransactionViewController: UIViewController {
 
         ])
         
-        setCategories()
+        fetchCategories()
     }
     
     func setupNumpad() {
@@ -123,6 +147,8 @@ final class NewTransactionViewController: UIViewController {
                     deleteButton.setImage(deleteSymbol, for: .normal)
                     deleteButton.tintColor = .label
                     deleteButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+                    let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(backButtonLongPressed))
+                    deleteButton.addGestureRecognizer(longPressGestureRecognizer)
                     
                     hStack.addArrangedSubview(deleteButton)
                 }
@@ -148,13 +174,14 @@ final class NewTransactionViewController: UIViewController {
         ])
     }
     
-    func fetchCategories() -> [Category] {
+    func fetchCategories() {
         do {
-            return try context.fetch(Category.fetchRequest())
+            categories = try context.fetch(Category.fetchRequest())
         } catch {
             print("Could not fetch categories")
         }
-        return []
+        
+        setCategories()
     }
     
     func setCategories() {
@@ -163,9 +190,10 @@ final class NewTransactionViewController: UIViewController {
     
     @objc func addTransaction() {
         let transaction = Transaction(context: context)
-        transaction.amount = Double(amountLabel.text ?? "0") ?? 0.0
+        transaction.name = descriptionField.text?.isEmpty == false ? descriptionField.text! : "--"
+        transaction.amount = Double(amountValue) ?? 0.0
         transaction.date = Date()
-        
+                
         var categories = [Category]()
         let request = NSFetchRequest<Category>(entityName: "Category")
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
@@ -176,36 +204,50 @@ final class NewTransactionViewController: UIViewController {
         }
 
         transaction.category = categories.first(where: { cat in
-            cat.name == categoryPicker.currentTitle
+            cat.name == categoryPicker.configuration?.title
         })
-        
+                
         do {
             try context.save()
         } catch {
-            print("Could not save transaction")
+            print("Could not save transaction \(error)")
         }
         
-        amountLabel.text = ""
-        newTransactionViewDelegate?.didAddTransaction()
+        amountValue = "0"
+        delegate?.didAddTransaction()
     }
     
     @objc func numPadButtonPressed(sender: UIButton) {
         guard let buttonText = sender.titleLabel?.text else { return }
         
-        if let currentText = amountLabel.text, !currentText.isEmpty {
-            if currentText.count < 8 {
-                amountLabel.text! += buttonText
-            } else {
-                return
-            }
-        } else {
-            amountLabel.text = buttonText
+        if amountValue == "0" {
+            amountValue = buttonText
+        }
+        else {
+            amountValue += buttonText
         }
     }
     
     @objc func backButtonPressed() {
-        if let _ = amountLabel.text, !amountLabel.text!.isEmpty {
-            amountLabel.text!.removeLast()
+        if amountValue.count > 1 {
+            amountValue.removeLast()
         }
+        else if amountValue == "0" {
+            amountLabel.transform = CGAffineTransform(translationX: 20, y: 0)
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
+                self.amountLabel.transform = CGAffineTransform.identity
+            })
+        }
+        else {
+            amountValue = "0"
+        }
+    }
+    
+    @objc func backButtonLongPressed() {
+        amountValue = "0"
+    }
+    
+    @objc func categoryAdded() {
+        fetchCategories()
     }
 }

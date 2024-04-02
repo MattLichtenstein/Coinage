@@ -17,8 +17,7 @@ class PickerButton: UIButton {
     
     var selectedOption: String? {
         didSet {
-            setTitle(selectedOption, for: .normal)
-        }
+            configuration?.attributedTitle = AttributedString(selectedOption ?? "--", attributes: AttributeContainer([NSAttributedString.Key.font: UIFont(name: Constants.cmRegular, size: 16)!]))        }
     }
     
     init(options: [String] = []) {
@@ -28,6 +27,7 @@ class PickerButton: UIButton {
         super.init(frame: .zero)
 
         configure()
+        setupMenu()
     }
     
     required init?(coder: NSCoder) {
@@ -46,29 +46,21 @@ class PickerButton: UIButton {
     func setOptions(_ options: [String]) {
         if options.isEmpty { return }
         self.options = options
-        setTitle(options[0], for: .normal)
     }
     
     private func configure() {
-        configuration = .plain()
+        configuration = .gray()
+        configuration?.baseBackgroundColor = .secondarySystemBackground
+        configuration?.baseForegroundColor = .label
         configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0.0, leading: -4.0, bottom: 0.0, trailing: 0.0)
-        setTitleColor(.label, for: .normal)
-        tintColor = .gray
-        backgroundColor = .secondarySystemBackground
+        configuration?.background.cornerRadius = 10
         contentHorizontalAlignment = .leading
-        layer.cornerRadius = 10
-        tintColor = .gray
         showsMenuAsPrimaryAction = true
-
-        setTitle(selectedOption, for: .normal)
+ 
 
         let config = UIImage.SymbolConfiguration(pointSize: 14)
-        let image = UIImage(systemName:  "arrow.up.and.down", withConfiguration: config)
-        let highlightImage = image?.withTintColor(.systemGray2, renderingMode: .alwaysOriginal)
+        let image = UIImage(systemName:  "chevron.up.chevron.down", withConfiguration: config)
         setImage(image, for: .normal)
-        setImage(highlightImage, for: .highlighted)
-        
-        setupMenu()
     }
     
     private func setupMenu() {
@@ -82,5 +74,6 @@ class PickerButton: UIButton {
         
         let menu = UIMenu(children: actions)
         self.menu = menu
+        selectedOption = !options.isEmpty ? options[0] : "--"
     }
 }

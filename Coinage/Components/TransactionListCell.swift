@@ -9,6 +9,7 @@ import UIKit
 
 class TransactionListCell: UITableViewCell {
     
+    private let descriptionLabel = UILabel()
     private let categoryLabel = UILabel()
     private let amountLabel = UILabel()
     
@@ -29,14 +30,14 @@ class TransactionListCell: UITableViewCell {
     }
     
     func setTransaction(_ transaction: Transaction) {
-        amountLabel.text = String(transaction.amount)
+        descriptionLabel.text = transaction.name
         categoryLabel.text = transaction.category?.name
+        amountLabel.text = String(transaction.amount)
     }
     
     private func setupCell() {
         let iconCircle = UIView()
         let vStack = UIStackView()
-        let descriptionLabel = UILabel()
 
         contentView.addSubview(iconCircle)
         contentView.addSubview(vStack)
@@ -53,9 +54,6 @@ class TransactionListCell: UITableViewCell {
         layoutIfNeeded()
         iconCircle.layer.cornerRadius = iconCircle.frame.width / 2
         iconCircle.backgroundColor = .systemGray
-
-        descriptionLabel.text = "Description"
-        categoryLabel.text = "Category"
         
         vStack.axis = .vertical
         vStack.addArrangedSubview(descriptionLabel)

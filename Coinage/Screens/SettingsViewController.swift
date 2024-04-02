@@ -59,5 +59,11 @@ extension SettingsViewController: SettingsViewDelegate {
         } catch {
             print("Could not delete all transactions")
         }
+        
+        do {
+            try context.save()
+        } catch {
+            print("Could not save")
+        }
     }
 }

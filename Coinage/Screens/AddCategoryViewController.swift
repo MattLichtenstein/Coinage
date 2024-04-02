@@ -7,17 +7,12 @@
 
 import UIKit
 
-protocol AddCategoryViewDelegate {
-    func didAddCategory()
-}
-
 class AddCategoryViewController: UIViewController {
 
-    var delegate: AddCategoryViewDelegate?
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    private let categoryTextField: TextField = {
-        let categoryTextField = TextField()
+    private let categoryTextField: BorderedTextField = {
+        let categoryTextField = BorderedTextField()
         categoryTextField.placeholder = "Category name"
         return categoryTextField
     }()
@@ -94,12 +89,10 @@ class AddCategoryViewController: UIViewController {
         let category = Category(context: context)
         category.name = categoryTextField.text
         category.type = (getCategoryType()).rawValue
-        
-        print(category)
-        
+                
         do {
             try context.save()
-            delegate?.didAddCategory()
+            NotificationCenter.default.post(name: Notifications.categoryAdded, object: nil)
         } catch {
             print("Could not save category")
         }
