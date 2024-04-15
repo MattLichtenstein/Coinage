@@ -28,6 +28,17 @@ class TransactionListCell: UITableViewCell {
         categoryLabel.text = transaction.category?.name
         amountLabel.text = String(transaction.amount)
         timestampLabel.text = timestamp
+        
+        switch CategoryType(rawValue: transaction.category?.type ?? CategoryType.investment.rawValue) {
+        case .expense:
+            amountLabel.textColor = .systemRed
+        case .income:
+            amountLabel.textColor = .systemGreen
+        case .investment:
+            fallthrough
+        case .none:
+            amountLabel.textColor = .systemGray
+        }
     }
     
     private func setupCell() {
