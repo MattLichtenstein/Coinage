@@ -8,13 +8,7 @@
 import CoreData
 import UIKit
 
-protocol NewTransactionViewDelegate {
-    func didAddTransaction()
-}
-
 final class NewTransactionViewController: UIViewController {
-    
-    var delegate: NewTransactionViewDelegate?
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -82,7 +76,7 @@ final class NewTransactionViewController: UIViewController {
         setupAddTransactionButton()
         setupNumpad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(categoryAdded), name: Notifications.categoryAdded, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(categoryAdded), name: .categoryAdded, object: nil)
     }
     
     func setupAmountLabel() {
@@ -192,7 +186,7 @@ final class NewTransactionViewController: UIViewController {
         let transaction = Transaction(context: context)
         transaction.name = descriptionField.text?.isEmpty == false ? descriptionField.text! : "--"
         transaction.amount = Double(amountValue) ?? 0.0
-        transaction.date = Date()
+        transaction.timestamp = Date()
                 
         var categories = [Category]()
         let request = NSFetchRequest<Category>(entityName: "Category")
@@ -214,7 +208,8 @@ final class NewTransactionViewController: UIViewController {
         }
         
         amountValue = "0"
-        delegate?.didAddTransaction()
+        descriptionField.text = ""
+        NotificationCenter.default.post(name: .transactionListChanged, object: nil)
     }
     
     @objc func numPadButtonPressed(sender: UIButton) {

@@ -92,7 +92,7 @@ class AddCategoryViewController: UIViewController {
                 
         do {
             try context.save()
-            NotificationCenter.default.post(name: Notifications.categoryAdded, object: nil)
+            NotificationCenter.default.post(name: .categoryAdded, object: nil)
         } catch {
             print("Could not save category")
         }

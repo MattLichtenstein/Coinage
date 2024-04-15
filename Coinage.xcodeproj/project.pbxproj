@@ -15,6 +15,7 @@
 		2C8C5F6A2B97932A00E0ECFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C8C5F692B97932A00E0ECFD /* Assets.xcassets */; };
 		2C8C5F6D2B97932A00E0ECFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C8C5F6B2B97932A00E0ECFD /* LaunchScreen.storyboard */; };
 		2CB255182B9D13DA005FD0F9 /* TransactionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB255172B9D13DA005FD0F9 /* TransactionListCell.swift */; };
+		2CCE1AB42BCB4064007604FC /* TransactionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE1AB32BCB4064007604FC /* TransactionListViewModel.swift */; };
 		2CD5C4822BA15539005BAF28 /* CategoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5C4812BA15539005BAF28 /* CategoryListCell.swift */; };
 		2CD5C4842BA21D27005BAF28 /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5C4832BA21D27005BAF28 /* PickerButton.swift */; };
 		2CD5C4862BA24CE3005BAF28 /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5C4852BA24CE3005BAF28 /* BorderedTextField.swift */; };
@@ -45,6 +46,7 @@
 		2C8C5F6C2B97932A00E0ECFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C8C5F6E2B97932A00E0ECFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CB255172B9D13DA005FD0F9 /* TransactionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListCell.swift; sourceTree = "<group>"; };
+		2CCE1AB32BCB4064007604FC /* TransactionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListViewModel.swift; sourceTree = "<group>"; };
 		2CD5C4812BA15539005BAF28 /* CategoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListCell.swift; sourceTree = "<group>"; };
 		2CD5C4832BA21D27005BAF28 /* PickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerButton.swift; sourceTree = "<group>"; };
 		2CD5C4852BA24CE3005BAF28 /* BorderedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
@@ -106,6 +108,24 @@
 			path = Coinage;
 			sourceTree = "<group>";
 		};
+		2CCE1AB52BCB406B007604FC /* TransactionList */ = {
+			isa = PBXGroup;
+			children = (
+				2C4A404C2B979A17002329AC /* TransactionListViewController.swift */,
+				2CCE1AB32BCB4064007604FC /* TransactionListViewModel.swift */,
+			);
+			path = TransactionList;
+			sourceTree = "<group>";
+		};
+		2CCE1AB62BCB4080007604FC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2CD5C4812BA15539005BAF28 /* CategoryListCell.swift */,
+				2CB255172B9D13DA005FD0F9 /* TransactionListCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		2CD5C4892BA29E29005BAF28 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,7 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				2C4A40482B9797B6002329AC /* NewTransactionViewController.swift */,
-				2C4A404C2B979A17002329AC /* TransactionListViewController.swift */,
+				2CCE1AB52BCB406B007604FC /* TransactionList */,
 				2CD879612B9F883C004EDFCF /* SettingsViewController.swift */,
 				2CD879632B9F88FF004EDFCF /* SettingsView.swift */,
 				2CD879652BA0EBAB004EDFCF /* CategoryListViewController.swift */,
@@ -155,8 +175,7 @@
 				2CD5C48B2BB7283B005BAF28 /* PlainTextField.swift */,
 				2CD5C4852BA24CE3005BAF28 /* BorderedTextField.swift */,
 				2CD5C4832BA21D27005BAF28 /* PickerButton.swift */,
-				2CD5C4812BA15539005BAF28 /* CategoryListCell.swift */,
-				2CB255172B9D13DA005FD0F9 /* TransactionListCell.swift */,
+				2CCE1AB62BCB4080007604FC /* Cells */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -252,6 +271,7 @@
 				2CD5C48C2BB7283B005BAF28 /* PlainTextField.swift in Sources */,
 				2C4A404D2B979A17002329AC /* TransactionListViewController.swift in Sources */,
 				2CD5C4862BA24CE3005BAF28 /* BorderedTextField.swift in Sources */,
+				2CCE1AB42BCB4064007604FC /* TransactionListViewModel.swift in Sources */,
 				2CF649A52B9A323F00841A69 /* CoreData.xcdatamodeld in Sources */,
 				2CB255182B9D13DA005FD0F9 /* TransactionListCell.swift in Sources */,
 				2CD879642B9F88FF004EDFCF /* SettingsView.swift in Sources */,

@@ -13,7 +13,7 @@ class CategoryListCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupCell()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
@@ -24,7 +24,7 @@ class CategoryListCell: UITableViewCell {
         nameLabel.text = category.name
     }
     
-    private func setupCell() {
+    private func setupUI() {
         contentView.addSubview(nameLabel)
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false

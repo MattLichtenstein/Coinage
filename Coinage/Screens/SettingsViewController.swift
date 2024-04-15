@@ -9,13 +9,8 @@ import CoreData
 import UIKit
 import SwiftUI
 
-protocol SettingsViewControllerDelegate {
-    func didDeleteAllTransactions()
-}
-
 final class SettingsViewController: UIViewController {
         
-    var delegate: SettingsViewControllerDelegate?
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
@@ -55,7 +50,7 @@ extension SettingsViewController: SettingsViewDelegate {
         
         do {
             try context.execute(deleteRequest)
-            delegate?.didDeleteAllTransactions()
+            NotificationCenter.default.post(name: .transactionListChanged, object: nil)
         } catch {
             print("Could not delete all transactions")
         }

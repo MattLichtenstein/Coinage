@@ -25,7 +25,7 @@ class CategoryListViewController: UIViewController {
         setupAddCategoryButton()
         fetchCategories()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(categoryAdded), name: Notifications.categoryAdded, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(categoryAdded), name: .categoryAdded, object: nil)
     }
     
     func setupAddCategoryToolbarButton() {

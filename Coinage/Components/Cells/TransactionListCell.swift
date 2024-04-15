@@ -12,6 +12,7 @@ class TransactionListCell: UITableViewCell {
     private let descriptionLabel = UILabel()
     private let categoryLabel = UILabel()
     private let amountLabel = UILabel()
+    private let timestampLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -21,18 +22,12 @@ class TransactionListCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
 
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 100, left: 10, bottom: 10, right: 10))
-
-    }
-    
-    func setTransaction(_ transaction: Transaction) {
+    func setTransaction(_ transaction: Transaction, _ timestamp: String) {
         descriptionLabel.text = transaction.name
         categoryLabel.text = transaction.category?.name
         amountLabel.text = String(transaction.amount)
+        timestampLabel.text = timestamp
     }
     
     private func setupCell() {
@@ -42,6 +37,7 @@ class TransactionListCell: UITableViewCell {
         contentView.addSubview(iconCircle)
         contentView.addSubview(vStack)
         contentView.addSubview(amountLabel)
+        contentView.addSubview(timestampLabel)
 
         iconCircle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -69,6 +65,14 @@ class TransactionListCell: UITableViewCell {
         NSLayoutConstraint.activate([
             amountLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             amountLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+        ])
+        
+        timestampLabel.font = UIFont.systemFont(ofSize: 12)
+        timestampLabel.textColor = .gray
+        timestampLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            timestampLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            timestampLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16)
         ])
     }
 }

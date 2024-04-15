@@ -10,9 +10,8 @@ import UIKit
 
 final class TransactionListViewController: UIViewController{
 
-    private var transactions = [Transaction]()
+    private let viewModel = TransactionListViewModel()
     private let transactionListTableView = UITableView()
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -20,7 +19,6 @@ final class TransactionListViewController: UIViewController{
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        fetchTransactions()
     }
     
     override func viewDidLoad() {
@@ -34,6 +32,7 @@ final class TransactionListViewController: UIViewController{
         view.addSubview(transactionListTableView)
         
         setupTableView()
+        setupActions()
     }
     
     func setupTableView() {
@@ -51,23 +50,24 @@ final class TransactionListViewController: UIViewController{
         ])
     }
     
-    func fetchTransactions() {
-        do{
-            transactions = try context.fetch(Transaction.fetchRequest())
-        } catch {
-            print("Could not fetch transactions")
+    func setupActions() {
+        viewModel.updateView = { [weak self] in
+            self?.transactionListTableView.reloadData()
         }
     }
+    
 }
 
 extension TransactionListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactions.count
+        return viewModel.transactions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = transactionListTableView.dequeueReusableCell(withIdentifier: "transactionCell") as! TransactionListCell
-        cell.setTransaction(transactions[indexPath.row])
+        let transaction = viewModel.transactions[indexPath.row]
+        let formattedTimestamp = viewModel.getFormattedTimestamp(date: transaction.timestamp!)
+        cell.setTransaction(transaction, formattedTimestamp)
         return cell
     }
     
@@ -79,18 +79,4 @@ extension TransactionListViewController: UITableViewDelegate, UITableViewDataSou
         return 80
     }
         
-}
-
-extension TransactionListViewController: NewTransactionViewDelegate {
-    func didAddTransaction() {
-        fetchTransactions()
-        transactionListTableView.reloadData()
-    }
-}
-
-extension TransactionListViewController: SettingsViewControllerDelegate {
-    func didDeleteAllTransactions() {
-        fetchTransactions()
-        transactionListTableView.reloadData()
-    }
 }

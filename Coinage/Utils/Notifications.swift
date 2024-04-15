@@ -7,6 +7,7 @@
 
 import Foundation
 
-struct Notifications {
+extension Notification.Name {
+    static let transactionListChanged = Notification.Name("transactionAdded")
     static let categoryAdded = Notification.Name("categoryAdded")
 }
