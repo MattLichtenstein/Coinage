@@ -24,12 +24,16 @@ final class TransactionListViewModel {
         let sortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         do {
-            
             transactions = try context.fetch(fetchRequest)
             updateView?()
-        } catch {
-            print("Could not fetch transactions")
-        }
+        } catch { print("Could not fetch transactions") }
+    }
+    
+    func deleteTransaction(row: Int) {
+        context.delete(transactions[row])
+        transactions.remove(at: row)
+        do { try context.save() }
+        catch { print("Could not save") }
     }
     
     func getFormattedTimestamp(date: Date) -> String {
@@ -59,17 +63,3 @@ final class TransactionListViewModel {
         fetchTransactions()
     }
 }
-
-//extension TransactionListViewModel: NewTransactionViewDelegate {
-//    func didAddTransaction() {
-//        fetchTransactions()
-//        transactionListTableView.reloadData()
-//    }
-//}
-//
-//extension TransactionListViewModel: SettingsViewControllerDelegate {
-//    func didDeleteAllTransactions() {
-//        fetchTransactions()
-//        transactionListTableView.reloadData()
-//    }
-
