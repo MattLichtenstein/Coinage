@@ -33,6 +33,15 @@ final class NewTransactionViewController: UIViewController {
     private lazy var descriptionField: PlainTextField = {
         let descriptionField = PlainTextField()
         descriptionField.placeholder = "Description"
+        descriptionField.autocorrectionType = .no
+        descriptionField.spellCheckingType = .no
+        descriptionField.delegate = self
+        let toolbar = UIToolbar()
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(UIViewController.closeKeyboard))
+        toolbar.setItems([space, doneButton], animated: true)
+        toolbar.sizeToFit()
+        descriptionField.inputAccessoryView = toolbar
         return descriptionField
     }()
     
@@ -60,6 +69,8 @@ final class NewTransactionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.hideKeyboardWhenTappedAround()
         
         view.backgroundColor = .systemBackground
         edgesForExtendedLayout = []
@@ -182,7 +193,8 @@ final class NewTransactionViewController: UIViewController {
         categoryPicker.setOptions(categories.map { $0.name ?? "Unknown category" })
     }
     
-    @objc func addTransaction() {
+    @objc
+    func addTransaction() {
         let transaction = Transaction(context: context)
         transaction.name = descriptionField.text?.isEmpty == false ? descriptionField.text! : "--"
         transaction.amount = Double(amountValue) ?? 0.0
@@ -212,7 +224,8 @@ final class NewTransactionViewController: UIViewController {
         NotificationCenter.default.post(name: .transactionListChanged, object: nil)
     }
     
-    @objc func numPadButtonPressed(sender: UIButton) {
+    @objc
+    func numPadButtonPressed(sender: UIButton) {
         guard let buttonText = sender.titleLabel?.text else { return }
         
         if amountValue == "0" {
@@ -223,7 +236,8 @@ final class NewTransactionViewController: UIViewController {
         }
     }
     
-    @objc func backButtonPressed() {
+    @objc
+    func backButtonPressed() {
         if amountValue.count > 1 {
             amountValue.removeLast()
         }
@@ -238,11 +252,19 @@ final class NewTransactionViewController: UIViewController {
         }
     }
     
-    @objc func backButtonLongPressed() {
+    @objc
+    func backButtonLongPressed() {
         amountValue = "0"
     }
     
-    @objc func categoryAdded() {
+    @objc
+    func categoryAdded() {
         fetchCategories()
+    }
+}
+
+extension NewTransactionViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        descriptionField.endEditing(true)
     }
 }

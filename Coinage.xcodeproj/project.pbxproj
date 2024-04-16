@@ -16,6 +16,7 @@
 		2C8C5F6D2B97932A00E0ECFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C8C5F6B2B97932A00E0ECFD /* LaunchScreen.storyboard */; };
 		2CB255182B9D13DA005FD0F9 /* TransactionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB255172B9D13DA005FD0F9 /* TransactionListCell.swift */; };
 		2CCE1AB42BCB4064007604FC /* TransactionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE1AB32BCB4064007604FC /* TransactionListViewModel.swift */; };
+		2CCE1AB92BCF0E52007604FC /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE1AB82BCF0E52007604FC /* UIViewController+Extension.swift */; };
 		2CD5C4822BA15539005BAF28 /* CategoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5C4812BA15539005BAF28 /* CategoryListCell.swift */; };
 		2CD5C4842BA21D27005BAF28 /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5C4832BA21D27005BAF28 /* PickerButton.swift */; };
 		2CD5C4862BA24CE3005BAF28 /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5C4852BA24CE3005BAF28 /* BorderedTextField.swift */; };
@@ -47,6 +48,7 @@
 		2C8C5F6E2B97932A00E0ECFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CB255172B9D13DA005FD0F9 /* TransactionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListCell.swift; sourceTree = "<group>"; };
 		2CCE1AB32BCB4064007604FC /* TransactionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListViewModel.swift; sourceTree = "<group>"; };
+		2CCE1AB82BCF0E52007604FC /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2CD5C4812BA15539005BAF28 /* CategoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListCell.swift; sourceTree = "<group>"; };
 		2CD5C4832BA21D27005BAF28 /* PickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerButton.swift; sourceTree = "<group>"; };
 		2CD5C4852BA24CE3005BAF28 /* BorderedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
@@ -126,6 +128,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		2CCE1AB72BCF0E27007604FC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2CCE1AB82BCF0E52007604FC /* UIViewController+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		2CD5C4892BA29E29005BAF28 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +149,7 @@
 			children = (
 				2CD8795B2B9E91F2004EDFCF /* Constants.swift */,
 				2CD5C48D2BBC71AF005BAF28 /* Notifications.swift */,
+				2CCE1AB72BCF0E27007604FC /* Extensions */,
 				2CD5C4892BA29E29005BAF28 /* Enums */,
 			);
 			path = Utils;
@@ -274,6 +285,7 @@
 				2CCE1AB42BCB4064007604FC /* TransactionListViewModel.swift in Sources */,
 				2CF649A52B9A323F00841A69 /* CoreData.xcdatamodeld in Sources */,
 				2CB255182B9D13DA005FD0F9 /* TransactionListCell.swift in Sources */,
+				2CCE1AB92BCF0E52007604FC /* UIViewController+Extension.swift in Sources */,
 				2CD879642B9F88FF004EDFCF /* SettingsView.swift in Sources */,
 				2C8C5F612B97932800E0ECFD /* AppDelegate.swift in Sources */,
 				2C8C5F632B97932800E0ECFD /* SceneDelegate.swift in Sources */,
