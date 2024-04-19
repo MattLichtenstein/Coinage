@@ -25,6 +25,7 @@ struct SettingsView: View {
                     } label: {
                         HStack {
                             Text("Categories")
+                                .font(Font(UIFont(name: Constants.FontFamily.cmRegularRounded, size: CGFloat(Constants.FontSize.paragraph))!))
                             Spacer()
                             Image(systemName: "chevron.right")
                                 .foregroundStyle(Color(UIColor.systemGray2))
@@ -39,6 +40,7 @@ struct SettingsView: View {
                 } label: {
                     Text("Delete all transactions")
                         .foregroundStyle(.red)
+                        .font(Font(UIFont(name: Constants.FontFamily.cmRegularRounded, size: CGFloat(Constants.FontSize.paragraph))!))
                 }
             }
         }

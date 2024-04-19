@@ -17,7 +17,7 @@ class PickerButton: UIButton {
     
     var selectedOption: String? {
         didSet {
-            configuration?.attributedTitle = AttributedString(selectedOption ?? "--", attributes: AttributeContainer([NSAttributedString.Key.font: UIFont(name: Constants.cmRegular, size: 16)!]))        }
+            configuration?.attributedTitle = AttributedString(selectedOption ?? "--", attributes: AttributeContainer([NSAttributedString.Key.font: UIFont(name: Constants.FontFamily.cmRegularRounded, size: 16)!]))        }
     }
     
     init(options: [String] = []) {

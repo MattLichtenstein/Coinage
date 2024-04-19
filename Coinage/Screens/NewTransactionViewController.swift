@@ -21,7 +21,7 @@ final class NewTransactionViewController: UIViewController {
     }
     
     private lazy var amountLabel: UILabel = {
-        let font = UIFont(name: Constants.cmMediumRounded, size:  50)
+        let font = UIFont(name: Constants.FontFamily.cmMediumRounded, size:  64)
         let amountLabel = UILabel()
         amountLabel.font = UIFontMetrics.default.scaledFont(for: font!)
         amountLabel.adjustsFontForContentSizeCategory = true
@@ -51,7 +51,8 @@ final class NewTransactionViewController: UIViewController {
         addTransactionButton.backgroundColor = .secondarySystemBackground
         addTransactionButton.setTitleColor(.label, for: .normal)
         addTransactionButton.layer.cornerRadius = 10
-        addTransactionButton.titleLabel?.font = UIFontMetrics.default.scaledFont(for: UIFont(name: Constants.cmMediumRounded, size:  16)!)
+        let font = UIFont(name: Constants.FontFamily.cmRegularRounded, size: CGFloat(Constants.FontSize.paragraph))!
+        addTransactionButton.titleLabel?.font = UIFontMetrics.default.scaledFont(for: font)
         addTransactionButton.titleLabel?.adjustsFontForContentSizeCategory = true
         addTransactionButton.addTarget(self, action: #selector(addTransaction), for: .touchUpInside)
         return addTransactionButton
@@ -86,7 +87,7 @@ final class NewTransactionViewController: UIViewController {
         setupCategoryPicker()
         setupAddTransactionButton()
         setupNumpad()
-        
+                
         NotificationCenter.default.addObserver(self, selector: #selector(categoryAdded), name: .categoryAdded, object: nil)
     }
     
@@ -161,7 +162,7 @@ final class NewTransactionViewController: UIViewController {
                     let button = UIButton(type: .system)
                     hStack.addArrangedSubview(button)
                     button.setTitle(numPadChars[(i - 1) * 3 + j - 1], for: .normal)
-                    button.titleLabel?.font = .systemFont(ofSize: 32)
+                    button.titleLabel?.font = UIFont(name: Constants.FontFamily.cmRegularRounded, size: 32)
                     button.setTitleColor(.label, for: .normal)
                     button.addTarget(self, action: #selector(numPadButtonPressed(sender:)), for: .touchUpInside)
                 }
