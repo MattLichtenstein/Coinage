@@ -17,10 +17,12 @@ class Label: UILabel {
 
     private var type: LabelType
     
-    init(type: LabelType) {
+    init(_ text: String, type: LabelType) {
         self.type = type
 
         super.init(frame: .zero)
+        
+        self.text = text
 
         configure()
     }

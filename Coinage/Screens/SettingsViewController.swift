@@ -57,6 +57,7 @@ extension SettingsViewController: SettingsViewDelegate {
         
         do {
             try context.save()
+            ToastManager.shared.showToast(text: "All transactions deleted", symbolName: "trash")
         } catch {
             print("Could not save")
         }

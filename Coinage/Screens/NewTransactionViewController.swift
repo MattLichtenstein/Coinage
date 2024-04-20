@@ -36,12 +36,6 @@ final class NewTransactionViewController: UIViewController {
         descriptionField.autocorrectionType = .no
         descriptionField.spellCheckingType = .no
         descriptionField.delegate = self
-        let toolbar = UIToolbar()
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(UIViewController.closeKeyboard))
-        toolbar.setItems([space, doneButton], animated: true)
-        toolbar.sizeToFit()
-        descriptionField.inputAccessoryView = toolbar
         return descriptionField
     }()
     
@@ -216,6 +210,7 @@ final class NewTransactionViewController: UIViewController {
                 
         do {
             try context.save()
+            ToastManager.shared.showToast(text: "Transaction added", symbolName: "checkmark.circle")
         } catch {
             print("Could not save transaction \(error)")
         }

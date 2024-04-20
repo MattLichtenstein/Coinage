@@ -18,6 +18,8 @@
 		2CCE1AB42BCB4064007604FC /* TransactionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE1AB32BCB4064007604FC /* TransactionListViewModel.swift */; };
 		2CCE1AB92BCF0E52007604FC /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE1AB82BCF0E52007604FC /* UIViewController+Extension.swift */; };
 		2CCE1ADD2BD2C1FA007604FC /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE1ADC2BD2C1FA007604FC /* Label.swift */; };
+		2CCE1ADF2BD30C71007604FC /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE1ADE2BD30C71007604FC /* Toast.swift */; };
+		2CCE1AE22BD40CFE007604FC /* ToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE1AE12BD40CFE007604FC /* ToastManager.swift */; };
 		2CD5C4822BA15539005BAF28 /* CategoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5C4812BA15539005BAF28 /* CategoryListCell.swift */; };
 		2CD5C4842BA21D27005BAF28 /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5C4832BA21D27005BAF28 /* PickerButton.swift */; };
 		2CD5C4862BA24CE3005BAF28 /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5C4852BA24CE3005BAF28 /* BorderedTextField.swift */; };
@@ -51,6 +53,8 @@
 		2CCE1AB32BCB4064007604FC /* TransactionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListViewModel.swift; sourceTree = "<group>"; };
 		2CCE1AB82BCF0E52007604FC /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2CCE1ADC2BD2C1FA007604FC /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		2CCE1ADE2BD30C71007604FC /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		2CCE1AE12BD40CFE007604FC /* ToastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastManager.swift; sourceTree = "<group>"; };
 		2CD5C4812BA15539005BAF28 /* CategoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListCell.swift; sourceTree = "<group>"; };
 		2CD5C4832BA21D27005BAF28 /* PickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerButton.swift; sourceTree = "<group>"; };
 		2CD5C4852BA24CE3005BAF28 /* BorderedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 				2CD879602B9F8713004EDFCF /* App */,
 				2CD8795D2B9F86CB004EDFCF /* Screens */,
 				2CD8795F2B9F86F7004EDFCF /* Components */,
+				2CCE1AE02BD40CE4007604FC /* Managers */,
 				2CD5C48A2BA29E37005BAF28 /* Utils */,
 				2CD8792D2B9E790A004EDFCF /* Fonts */,
 				2C8C5F692B97932A00E0ECFD /* Assets.xcassets */,
@@ -136,6 +141,14 @@
 				2CCE1AB82BCF0E52007604FC /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2CCE1AE02BD40CE4007604FC /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				2CCE1AE12BD40CFE007604FC /* ToastManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		2CD5C4892BA29E29005BAF28 /* Enums */ = {
@@ -190,6 +203,7 @@
 				2CD5C4832BA21D27005BAF28 /* PickerButton.swift */,
 				2CCE1AB62BCB4080007604FC /* Cells */,
 				2CCE1ADC2BD2C1FA007604FC /* Label.swift */,
+				2CCE1ADE2BD30C71007604FC /* Toast.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -299,6 +313,8 @@
 				2C4A40472B979681002329AC /* MainTabBarController.swift in Sources */,
 				2CD5C4842BA21D27005BAF28 /* PickerButton.swift in Sources */,
 				2CD5C4882BA29E23005BAF28 /* CategoryType.swift in Sources */,
+				2CCE1ADF2BD30C71007604FC /* Toast.swift in Sources */,
+				2CCE1AE22BD40CFE007604FC /* ToastManager.swift in Sources */,
 				2CD8795C2B9E91F2004EDFCF /* Constants.swift in Sources */,
 				2CD879622B9F883C004EDFCF /* SettingsViewController.swift in Sources */,
 			);
